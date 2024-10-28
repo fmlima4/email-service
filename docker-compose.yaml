@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'    # Porta do RabbitMQ
+      - '15672:15672'  # Interface de gerenciamento do RabbitMQ
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+
+  email-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: email-service
+    ports:
+      - '3001:3001'
+    environment:
+      RABBITMQ_URL: amqp://user:password@rabbitmq:5672
+      EMAIL_USER: seu-email@gmail.com
+      EMAIL_PASS: sua-senha
+    depends_on:
+      - rabbitmq

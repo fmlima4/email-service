@@ -1,14 +1,17 @@
 version: '3.8'
+
 services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
-      - '5672:5672'    # Porta do RabbitMQ
-      - '15672:15672'  # Interface de gerenciamento do RabbitMQ
+      - '5672:5672'
+      - '15672:15672'
     environment:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
+    networks:
+      - app-network
 
   email-service:
     build:
@@ -23,3 +26,9 @@ services:
       EMAIL_PASS: sua-senha
     depends_on:
       - rabbitmq
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true  # Altere para usar a mesma rede externa já criada

@@ -21,8 +21,8 @@ async function bootstrap() {
   console.log('Microservice is listening on RabbitMQ...');
 
   // Caso você precise expor alguma API HTTP junto do microserviço
-  await app.listen(3000);
-  console.log('HTTP API is running on http://localhost:3000');
+  await app.listen(3001);
+  console.log('HTTP API is running on http://localhost:3001');
 }
 
 bootstrap();

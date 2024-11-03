@@ -1,9 +1,4 @@
 import { MailerOptions } from '@nestjs-modules/mailer';
-import { join } from 'path';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'; // Importação correta
-
-//t9129454@gmail.com
-//trabalhomba2024
 
 export const mailerConfig: MailerOptions = {
   transport: {
